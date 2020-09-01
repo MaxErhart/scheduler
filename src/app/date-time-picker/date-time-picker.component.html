@@ -1,0 +1,62 @@
+<div class="date-time-picker-container" [class.active]="activeDateTimePicker">
+	<div class="date-time-picker-header">
+		<div class="page-name header-item"><span class="underline">{{activePageName}}</span></div>
+		<div class="day-name header-item"><div *ngIf="dayName"><span class="underline">{{dayName}},</span>&nbsp;den &nbsp;</div><div *ngIf="date"><span class="underline">{{date}}.{{month}}.{{year}}</span></div></div>
+		<div class="timespan header-item"><div *ngIf="formGroup.get('startTime').value">Von <span class="underline">{{formGroup.get('startTime').value}}</span></div><div *ngIf="formGroup.get('endTime').value">&nbsp; bis <span class="underline">{{formGroup.get('endTime').value}}</span></div></div>
+		<button mat-icon-button class="header-close-button" (click)="closeDateTimePicker()">
+      <mat-icon>close</mat-icon>
+    </button>
+	</div>
+	<div class="wraper-body">
+		<app-event-info-form class="event-info-form" [formGroup]="formGroup" [onSecondStep]="onSecondStep"></app-event-info-form>
+	</div>
+
+
+	<div class="date-time-picker-body">
+		<mat-form-field appearance="fill" class="timepicker-form-field date-field" [formGroup]="formGroup">
+		  <mat-label>Datum</mat-label>
+		  <input matInput placeholder="DD-MM-YYYY" [matDatepicker]="picker" formControlName="dateField" required >
+		  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		  <mat-datepicker #picker ></mat-datepicker>
+		  <mat-error *ngIf="formGroup.get('dateField').invalid">{{getErrorMessage(formGroup.get('dateField'))}}</mat-error>
+		</mat-form-field>
+
+		<mat-checkbox color="primary" class="weekly-checkbox" labelPosition="after" [formControl]="formGroup.get('weekly')">Wöchentlich</mat-checkbox>
+
+		<mat-form-field class="timepicker-form-field start-time-field" appearance="fill" [formGroup]="formGroup" (errorState)="true">
+			<mat-label>Startzeitpunkt</mat-label>
+			<input matInput class="timepicker-input-field" formControlName="startTime" required >
+			<div matRipple class="suffix-icon-container" matSuffix (click)="timepickerStart.toggle(false)" >
+				<mat-icon class="timepicker-icon" [class.active]="timepickerStart.timepickerActive">access_time</mat-icon>
+			</div>
+			<mat-error *ngIf="formGroup.get('startTime').invalid">{{getErrorMessage(formGroup.get('startTime'))}}</mat-error>
+			<app-timepicker #timepickerStart (timepickerCloseEvent)="updateValues($event, 'startTime')"></app-timepicker>
+		</mat-form-field>
+
+		<div class="timespan-icon">-</div>
+
+		<mat-form-field class="timepicker-form-field end-time-field" appearance="fill" [formGroup]="formGroup">
+			<mat-label>Endzeitpunkt</mat-label>
+			<input matInput class="timepicker-input-field" formControlName="endTime" required>
+			<div matRipple class="suffix-icon-container" matSuffix (click)="timepickerEnd.toggle(false)">
+				<mat-icon class="timepicker-icon" [class.active]="timepickerEnd.timepickerActive">access_time</mat-icon>
+			</div>
+			<mat-error *ngIf="formGroup.get('endTime').invalid">{{getErrorMessage(formGroup.get('endTime'))}}</mat-error>
+			<app-timepicker #timepickerEnd (timepickerCloseEvent)="updateValues($event, 'endTime')"></app-timepicker>
+		</mat-form-field>
+	</div>
+	<div class="date-time-picker-footer">
+    <button mat-mini-fab color="primary" class="go-right-button" (click)="toSecondStep()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+  <div class="wraper-footer">
+	  <div class="date-time-picker-footer-page2" [class.active]="onSecondStep">
+	    <button mat-mini-fab color="primary" class="go-left-button" (click)="onSecondStep = false" >
+	      <mat-icon>keyboard_arrow_left</mat-icon>
+	    </button>
+	    <button mat-raised-button color="primary" class="accept-button" (click)="addEvent()">Bestätigen</button>
+		</div>
+  </div>
+</div>
+<div class="overlay" [class.active]="activeDateTimePicker" (click)="closeDateTimePicker()" ></div>

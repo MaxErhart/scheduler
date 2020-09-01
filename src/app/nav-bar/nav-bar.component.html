@@ -1,0 +1,6 @@
+<nav mat-tab-nav-bar [backgroundColor]="background" [color]="color" [disablePagination]="pagination" [disableRipple]="noRipple" >
+  <a mat-tab-link *ngFor="let link of links; let i = index"
+  	 (click)="pageChange(i, link)"
+     (click)="activeLink = link; activePageID = i"
+     [active]="activeLink == link"> {{link}} </a>
+</nav>

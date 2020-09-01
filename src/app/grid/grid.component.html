@@ -1,0 +1,29 @@
+<div class="wrapper">
+	<div class="grid-body-before" #gridBodyBefore (mousedown)="gridMouseDown($event)" (touchend)="selectRow($event)" [@pageLeft]="step" >
+	<!-- <div class="grid-body-before" #gridBodyBefore (mousedown)="gridMouseDown($event)" (touchstart)="selectRow($event)" [@pageRightLeftElement]="stateGoRight" [@pageLeft]="stateGoLeft" > -->
+		<div class="grid-row" *ngFor="let row of gridItems">
+			<div class="grid-item col-{{gridItem.col}} row-{{gridItem.row}}" *ngFor="let gridItem of row" [class.selected]="gridItem.selected" [class.booked]="gridItem.booked"></div>
+		</div>
+	</div>
+	<div class="grid-body" (mousedown)="gridMouseDown($event)" (touchend)="selectRow($event)" #gridBody [@pageMiddle]="step" >
+	<!-- <div class="grid-body" (mousedown)="gridMouseDown($event)" (touchstart)="selectRow($event)" #gridBody [@pageRight]="stateGoRight" (@pageRight.done)="stateGoRight = 'disabled'" [@pageLeft]="stateGoLeft" (@pageLeft.done)="stateGoLeft = 'disabled'"> -->
+
+		<div class="grid-row" *ngFor="let row of gridItems">
+			<div class="grid-item col-{{gridItem.col}} row-{{gridItem.row}}" *ngFor="let gridItem of row" [class.selected]="gridItem.selected" [class.booked]="gridItem.booked"></div>
+		</div>
+	</div>
+	<div class="grid-body-after" #gridBodyAfter (mousedown)="gridMouseDown($event)" (touchend)="selectRow($event)" [@pageRight]="step" >
+	<!-- <div class="grid-body-after" #gridBodyAfter (mousedown)="gridMouseDown($event)" (touchstart)="selectRow($event)" [@pageRight]="stateGoRight" [@pageLeftRightElement]="stateGoLeft" > -->
+		<div class="grid-row" *ngFor="let row of gridItems">
+			<div class="grid-item col-{{gridItem.col}} row-{{gridItem.row}}" *ngFor="let gridItem of row" [class.selected]="gridItem.selected" [class.booked]="gridItem.booked"></div>
+		</div>
+	</div>
+
+
+	<app-grid-event class="grid-event" *ngFor="let event of events" (deleteEventEmitter)="deleteEvent($event)" [offset]="0" [event]="event" [gridBasis]="gridBasis" (click)="clearSelection($event)" [@pageMiddle]="step" #eventMiddle></app-grid-event>
+	<app-grid-event class="grid-event" *ngFor="let event of prevPageEvents" (deleteEventEmitter)="deleteEvent($event)" [offset]="-275" [event]="event" [gridBasis]="gridBasis" (click)="clearSelection($event)" [@pageLeft]="step" #evenBefore></app-grid-event>
+	<app-grid-event class="grid-event" *ngFor="let event of nextPageEvents" (deleteEventEmitter)="deleteEvent($event)" [offset]="275" [event]="event" [gridBasis]="gridBasis" (click)="clearSelection($event)" [@pageRight]="step" #eventAfter></app-grid-event>
+
+</div>
+
+

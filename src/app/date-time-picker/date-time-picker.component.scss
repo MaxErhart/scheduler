@@ -1,0 +1,308 @@
+.weekly-checkbox {
+	grid-row: 1/2;
+	grid-column: 3/4;
+	justify-content: flex-end;
+}
+
+.error-message-container {
+	position: fixed;
+	font-family: sans-serif;
+	bottom: -10%;
+	z-index: 11;
+	background-color: #FFFFFF;
+	padding: 1.1em 1.4em;
+	font-size: 1.25em;
+	border-radius: 0.4rem;
+  box-shadow:	0 0.125rem 0.5rem rgba(255,0,0,0.3), 0 0.0625rem 0.3rem rgba(255,0,0,0.3);
+	visibility: hidden;
+}
+.error-message-container::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	bottom: 100%;
+	left: 1.5em;
+	border: .75rem solid transparent;
+	border-top: none;
+	border-bottom-color: #fff;
+	filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(255,0,0,0.3));
+}
+
+.error-message-container.active {
+  visibility: visible;
+  animation: speechBubble 100ms ease-out normal backwards;
+}
+
+
+@keyframes speechBubble {
+	0% {transform: scaleY(0);}
+	90% {transform: scale(1.01, 1.01);}
+	100% {transform: scaleY(1);}
+}
+
+.date-time-picker-container{
+
+	position: fixed;
+	display: grid;
+	transform: translateX(-50%) scaleY(0);
+	grid-template-rows: auto auto auto;
+	grid-template-columns: auto;
+	border-radius: 2px;
+	z-index: 3;
+	box-shadow: 0px 2px 5px 1px rgb(60, 60, 60, 0.5);
+	visibility: hidden;
+	transition: 300ms ease-in-out;
+}
+
+.wraper-body {
+	position: relative;
+	height: 175px;
+	width: 100%;
+	overflow: hidden;
+	grid-row-start: 2;
+	grid-column-start: 1;
+}
+
+.wraper-footer {
+	position: relative;
+	width: 100%;
+	height: 44px;
+	display: table;
+	overflow: hidden;
+	grid-row-start: 3;
+	grid-column-start: 1;
+
+}
+
+.date-time-picker-container.active{
+	left: 50%;
+	bottom: 40%;
+	transform: translateX(-50%) scaleY(1);
+	transition: 300ms ease-in-out;
+	visibility: visible;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+
+
+.date-time-picker-header {
+	background-color: #6300ee;
+	color: #ffffff;
+	display: grid;
+	grid-template-rows: auto auto auto;
+	grid-template-columns: auto;
+	align-items: center;
+	white-space: nowrap;
+}
+
+.header-close-button{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	color: #cccccc;
+}
+
+.header-item {
+	height: 1em;
+	font-size: 25px;
+	white-space: nowrap;
+}
+.page-name{
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 7.5px;
+	grid-row: 1/2;
+}
+
+.day-name > div{
+	display: inline-block;
+}
+.day-name {
+
+	padding-top: 7.5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 7.5px;
+	grid-row: 2/3;
+
+}
+
+.timespan {
+	padding-top: 7.5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 7.5px;
+	grid-row: 3/4;
+
+}
+.timespan > div {
+	display: inline-block;
+}
+
+.date-time-picker-body {
+	box-sizing: border-box;
+	background-color: #ffffff;
+	color: #000000;
+	display: grid;
+	height: 175px;
+	grid-row-start: 2;
+	grid-column-start: 1;
+	width: 100%;
+	grid-template-rows: auto auto;
+	grid-template-columns: auto auto auto auto;
+	align-items: center;
+	padding-bottom: 15px;
+}
+
+.timepicker-form-field {
+	width: 155px;
+	height: 50px;
+	padding: 15px;
+	position: relative;
+}
+
+.date-field {
+	padding-top: 7.5px;
+	grid-row: 1/2;
+}
+.start-time-field {
+	grid-row: 2/3;
+	grid-column: 1/2;
+}
+
+.timespan-icon {
+	grid-row: 2/3;
+	grid-column: 2/3;
+	font-size: 20px;
+	transform: scaleX(1.8);
+	display: flex;
+	justify-content: center;
+	padding: 0 !important;
+}
+
+.timepicker-icon.active {
+	color: #6300ee;
+}
+
+.end-time-field {
+	grid-row: 2/3;
+	grid-column: 3/4;
+}
+
+.date-time-picker-footer {
+	padding: 2px;
+	display: flex;
+	background-color: #cccccc;
+	flex-direction: row;
+	justify-content: flex-end;
+	grid-row-start: 3;
+	grid-column-start: 1;
+}
+
+
+
+.go-right-button {
+	// animation: pageChangePrev 300ms ease-out normal backwards;
+	margin-left: auto;
+	margin-right: 8px;
+	z-index: 1;
+}
+
+@keyframes buttonGrow {
+	0% {width: 0;}
+	100% {width: 30%;}
+}
+
+@keyframes pageChangePrev {
+	0% {margin-right: 58%;}
+	100% {margin-right: 0;}
+}
+
+@keyframes pageChange {
+	0% {margin-right: 0;}
+	100% {margin-right: 58%;}
+}
+
+.error-message-overlay {
+	position: fixed;
+	top:0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 10;
+	visibility: hidden;
+}
+
+.error-message-overlay.active {
+	visibility: visible;
+}
+
+.overlay {
+	position: fixed;
+	top:0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1;
+	visibility: hidden;
+}
+
+.overlay.active {
+	visibility: visible;
+}
+.suffix-icon-container {
+	display: flex;
+	transform: translate(0, -2px);
+	height: 35px;
+	width: 35px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50px;
+}
+
+.timepicker-icon {
+	color: #777777;
+	z-index: 1;
+	transform: translate(2px, 0) scale(1.1);
+
+}
+.suffix-icon-container:hover {
+	cursor: pointer;
+}
+
+.suffix-icon-container.timepicker-open:hover  {
+	cursor: default !important;
+}
+
+.date-time-picker-footer-page2 {
+	padding: 2px;
+	box-sizing: border-box;
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	background-color: #cccccc;
+	color: #000000;
+	transform: translateX(100%);
+	display: flex;
+	transition: 325ms ease-in-out;
+}
+
+.date-time-picker-footer-page2.active {
+	transition: 325ms ease-in-out;
+	transform: translateX(0);
+}
+
+.go-left-button {
+	margin-right: auto;
+	margin-left: 8px;
+}
+
+.accept-button {
+	margin-right: 8px;
+}

@@ -1,0 +1,12 @@
+.fab-button-container {
+	transition: 200ms ease-in-out;
+	transform: translate(-50%, -50%);
+	position: fixed;
+	left: calc(50% + 137.5px);
+	bottom: 7%;
+	z-index: 2;
+}
+
+.mat-icon-1 {
+	transform: scale(1.4);
+}

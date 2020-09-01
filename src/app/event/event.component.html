@@ -1,0 +1,8 @@
+<div class="event-container" *ngIf="eventPosition" (click)="eventActive ? eventActive=false : eventActive=true" [class.active]="eventActive" [style.top.px]="eventActive ? eventPosActive.top : eventPosition.top" [style.height.px]="eventActive ? null : eventPosition.height">
+	<div class="event-header">{{events[0].startDate | date:'h:mm'}} - {{events[0].endDate | date:'h:mm'}} am {{events[0].startDate | date:'fullDate'}} {{events[0].title | titlecase}}  {{events[0].owner | titlecase}}</div>
+	<div class="event-body">
+		<div *ngFor="let event of events"> {{event.startDate | date:'fullDate'}} </div>
+	</div>
+	<div class="event-footer">variety of stupid buttons</div>
+</div>
+<div class="event-overlay" (click)="eventActive ? eventActive=false : eventActive=true" [class.active]="eventActive"></div>

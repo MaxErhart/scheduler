@@ -1,0 +1,122 @@
+$cols: 1;
+$rows: 48;
+
+.grid-event {
+	position: absolute;
+	// left: 1089px;
+	width: 275px;
+	z-index: 1;
+
+}
+
+.wrapper{
+	box-sizing: border-box;
+	position: absolut;
+	display: flex;
+	// clip-path: inset(0% 0% 0% 0% );
+	z-index: 10;
+	// border: 1px solid blue;
+}
+
+.grid-body-before{
+	box-sizing: border-box;
+	display: grid;
+	position: absolute;
+	// transform: translateX(-100%);
+	grid-template-columns: 275px;
+	grid-auto-rows: 17.5px;
+	background-color: blue;
+
+}
+
+// .grid-body-after > * > *{
+// 	background-color: red;
+// }
+
+// .grid-body-before > * > *{
+// 	background-color: blue;
+// }
+
+.grid-body-after{
+	box-sizing: border-box;
+	display: grid;
+	position: absolute;
+	// transform: translateX(-100%);
+	/*grid-template-columns: 225px 225px 225px 225px 225px 225px 225px;*/
+	grid-template-columns: 275px;
+	grid-auto-rows: 17.5px;
+
+	// animation: swipeLeftRight 1400ms ease-out normal backwards;
+}
+
+.grid-body {
+	box-sizing: border-box;
+	display: grid;
+	position: absolute;
+	// transform: translateX(-100%);
+	/*grid-template-columns: 225px 225px 225px 225px 225px 225px 225px;*/
+	grid-template-columns: 275px;
+	grid-auto-rows: 17.5px;
+	// animation: swipeLeftCenter 1400ms ease-out normal backwards;
+}
+.grid-row {
+	box-sizing: border-box;
+	display: contents;
+}
+
+.grid-item {
+	box-sizing: border-box;
+	background-color: #eeeeee;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+	// animation: fadein 10ms ease-out normal backwards;
+}
+
+.grid-item:last-of-type {
+	border-right: 1px solid black;
+}
+
+.grid-row:last-of-type > div {
+	border-bottom: 1px solid black;
+}
+
+.grid-row:nth-child(2n) > div{
+	border-top: 0;
+}
+
+.grid-row:nth-child(2n+1) > div{
+	border-bottom: 0;
+}
+
+.grid-item.selected {
+	transition: 200ms ease-in-out;
+	background-color: #92e9dc !important;
+}
+
+.grid-item.booked {
+	// background-color: #aaaaaa;
+}
+
+
+@for $i from 0 to $rows {
+	@for $j from 0 to 1 {
+		.grid-item.row-#{$i}.col-#{$j} {
+			animation-delay: ($i+$j)*5ms;
+		}
+	}
+}
+
+@keyframes fadein {
+	0% {opacity: 0; transform: scale(1);}
+	50% {opacity: 0.5; transform: scale(1.01);}
+	100% {opacity: 1; transform: scale(1);}
+}
+
+@keyframes swipeLeftCenter {
+	0% {transform: translateX(-100%);}
+	100% {transform: translateX(-200%);}
+}
+@keyframes swipeLeftRight {
+	0% {transform: translateX(-100%);}
+	100% {transform: translateX(-200%);}
+}

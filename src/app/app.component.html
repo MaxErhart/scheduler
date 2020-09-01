@@ -1,0 +1,10 @@
+<app-nav-bar (navPageChange)="grid.updateViewVariables();dateTimePicker.updateViewVariables()"></app-nav-bar>
+<div class="app-body" >
+	<app-paginator class="app-body-item paginator" (paginatorEvent)="grid.updateViewVariables(); grid.paginatorEvent($event)"></app-paginator>
+	<app-grid class="app-body-item grid" (clearSelectionEmitter)="dateTimePicker.clearSelection()" (gridMouseDownEmitter)="selectionBox.createSelectionBox($event)" #grid></app-grid>
+	<app-timeline></app-timeline>
+</div>
+<div class="overlay" (click)="grid.clearSelection();dateTimePicker.clearSelection()"></div>
+<app-selection-box class="selection-box" #selectionBox (selectionBoxUpdate)="grid.setSelection($event)"></app-selection-box>
+<app-add-button class="add-button" (click)="dateTimePicker.openDateTimePicker()"></app-add-button>
+<app-date-time-picker #dateTimePicker [selectedDate]="grid.selectedDate" [selectionRowSpan]="grid.selectionRowSpan" (addEventEmitter)="grid.addEvent($event)" ></app-date-time-picker>

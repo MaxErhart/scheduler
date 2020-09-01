@@ -1,0 +1,24 @@
+<div class="paginator">
+	<div class="paginator-item item-1">
+    <button mat-icon-button type="button" disabled="false" (click)="changePage(-1)">
+      <svg viewBox="0 0 24 24" focusable="false" >
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+      </svg>
+    </button>
+	</div>
+	<div class="paginator-item item-2">
+		<div class="col-day-name">
+			{{columnDateString[0].dayName}}
+		</div>
+		<div class="col-date">
+			{{columnDateString[0].date}}.{{columnDateString[0].month}}.{{columnDateString[0].year}}
+		</div>
+	</div>
+	<div class="paginator-item item-3">
+    <button mat-icon-button type="button" (click)="changePage(1)">
+      <svg viewBox="0 0 24 24" focusable="false" >
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+      </svg>
+    </button>
+	</div>
+</div>

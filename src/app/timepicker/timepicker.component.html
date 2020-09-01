@@ -1,0 +1,29 @@
+<div class="timepicker-container" [class.active]="timepickerActive" [style.left.px]="x" [style.top.px]="y">
+	<div class="hour-picker" >
+		<div class="scroll-up" (click)="goUp()">
+			<mat-icon class="scroll-up-icon material-icon">keyboard_arrow_up</mat-icon>
+		</div>
+		<div class="hour-picker-content" (scroll)="onScroll($event)" #hourPickerElement>
+			<div class="houre-item" *ngFor="let houre of houreList" (click)="selectedHoure = houre;" [class.selected]="houre == selectedHoure">{{houre}}</div>
+		</div>
+		<div class="scroll-down" (click)="goDown()">
+			<mat-icon class="scroll-down-icon material-icon">keyboard_arrow_down</mat-icon>
+		</div>
+	</div>
+
+	<div class="minute-picker">
+
+		<div class="minute-item" *ngFor="let minute of minuteList" (click)="selectedMinute = minute;" [class.selected]="minute == selectedMinute">{{minute}}</div>
+
+	</div>
+
+	<div class="timepicker-footer">
+		<div class="icon-container" (click)="close(false)">
+			<mat-icon class="close-icon material-icon" >close</mat-icon>
+		</div>
+		<div class="icon-container" (click)="close(true)">
+			<mat-icon class="accept-icon material-icon"  >done</mat-icon>
+		</div>
+	</div>
+</div>
+<div class="timepicker-overlay" (click)="close(false)" [class.active]="timepickerActive"></div>

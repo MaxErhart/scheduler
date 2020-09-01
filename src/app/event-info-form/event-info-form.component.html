@@ -1,0 +1,26 @@
+<div class='container' [class.active]="onSecondStep">
+  <mat-form-field appearance="fill" class="title-field timepicker-form-field" [formGroup]="formGroup">
+    <mat-label>Ereignis Titel</mat-label>
+    <input matInput required formControlName="title" maxlength="25">
+    <mat-error *ngIf="formGroup.get('title').invalid">{{getErrorMessage(formGroup.get('title'))}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill"  class="color-field timepicker-form-field" [formGroup]="formGroup">
+    <mat-label>Farbwahl</mat-label>
+    <mat-select formControlName="color">
+      <mat-option [value]="color.value" *ngFor="let color of colors | keyvalue">
+      	<div class="option-item" >
+      		<div class="option-text">
+      			{{color.key | titlecase}}
+      		</div>
+      		<div class="option-icon" [style.backgroundColor]="color.value"></div>
+      	</div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill"  class="description-field timepicker-form-field" [formGroup]="formGroup">
+    <mat-label>Info Text</mat-label>
+    <textarea matInput formControlName="infoText"></textarea>
+  </mat-form-field>
+
+</div>

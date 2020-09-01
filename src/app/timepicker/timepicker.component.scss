@@ -1,0 +1,170 @@
+.timepicker-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 20;
+	visibility: hidden;
+}
+
+.timepicker-overlay.active {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	visibility: visible;
+}
+
+.timepicker-container {
+	display: grid;
+	position: fixed;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: auto auto;
+	// left: 700px;
+	// top: 200px;
+	width: 180px;
+	background-color: white;
+	// border: 1px solid gray;
+	box-shadow: 0px 2px 5px 1px rgb(60, 60, 60, 0.5);
+	align-items: center;
+	grid-gap: 0px;
+	visibility: hidden;
+	z-index: 21;
+}
+
+.timepicker-container.active {
+	visibility: visible;
+}
+
+.hour-picker {
+	box-sizing: border-box;
+	grid-row: 1/2;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 280px;
+	border-right: 1px solid gray;
+
+}
+
+.hour-picker-content {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-auto-rows: 40px;
+	overflow-y: scroll;
+	font-size: 1.6em;
+	border-right: 1px solid gray;
+}
+
+.scroll-up {
+	width: 100%;
+	height: 20px;
+	display: flex;
+	position: absolute;
+	top: 0px;
+	justify-content: center;
+	visibility: hidden;
+	z-index: 1;
+	align-items: center;
+}
+
+.scroll-down {
+	width: 100%;
+	height: 20px;
+	display: flex;
+	position: absolute;
+	bottom: 0px;
+	justify-content: center;
+	visibility: hidden;
+	z-index: 1;
+	align-items: center;
+}
+
+.hour-picker:hover > .scroll-up {
+	visibility: visible;
+	background-color: rgba(200, 200, 200, 0.8);
+}
+
+.hour-picker:hover > .scroll-down {
+	visibility: visible;
+	background-color: rgba(200, 200, 200, 0.8);
+}
+
+
+.houre-item {
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	align-items: center;
+}
+
+.houre-item:hover {
+	background-color: rgba(60, 60, 60, 0.2);
+}
+
+.houre-item.selected {
+	background-color: #00c7ab;
+}
+
+.minute-picker {
+	grid-row: 1/2;
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-auto-rows: 40px;
+	overflow-y: scroll;
+	font-size: 1.6em;
+	align-self: center;
+	// height: 100%;
+}
+.minute-item {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	align-items: center;
+}
+
+.minute-item:hover {
+	background-color: rgba(60, 60, 60, 0.2);
+}
+
+.minute-item.selected {
+	background-color: #00c7ab;
+}
+
+.minute-picker::-webkit-scrollbar {
+  display: none;
+}
+.hour-picker-content::-webkit-scrollbar {
+  display: none;
+}
+.timepicker-footer {
+	position: relative;
+	display: grid;
+	grid-row: 2/3;
+	grid-column: 1/4;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	height:40px;
+}
+
+.icon-container {
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-top: 1px solid gray;
+	cursor: pointer;
+}
+
+.icon-container:hover {
+	background-color: rgba(60, 60, 60, 0.2);
+}

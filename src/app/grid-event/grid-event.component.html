@@ -1,0 +1,33 @@
+ <div class="event-container" *ngIf="eventPosition" (click)="eventActive ? eventActive=false : eventActive=true" [class.active]="eventActive" [style.top.px]="eventActive ? eventPosActive.top : eventPosition.top" [style.height.px]="eventActive ? null : eventPosition.height">
+ <!-- <div class="event-container" *ngIf="eventPosition" (click)="eventActive ? eventActive=false : eventActive=true" [class.active]="eventActive"> -->
+	<div class="event-header" [style.backgroundColor]="event.color.background" [style.color]="event.color.text">
+		<div class="header-timespan header-item">
+			{{event.startDate | date:'H:mm'}} - {{event.endDate | date:'H:mm'}} &nbsp;
+		</div>
+		<div class="header-title header-item" [style.gridRowStart]="eventActive ? 2 : eventPosition.height > 35 ? 2 : 1" [style.gridColumnStart]="eventActive ? 1 : eventPosition.height > 35 ? 1 : 2" [style.gridColumnEnd]="eventActive ? 3 : eventPosition.height > 35 ? 3 : 3">
+			{{event.title | titlecase}}
+		</div>
+		<div class="header-owner header-item" *ngIf="eventActive || eventPosition.height > 35">
+			{{event.owner | titlecase}}
+		</div>
+		<div class="header-date header-item" *ngIf="(eventActive || eventPosition.height > 35) && !event.weekly">
+			{{event.startDate | date:'EEEE, d MMM, y'}}
+		</div>
+		<div class="header-date header-item" *ngIf="(eventActive || eventPosition.height > 35) && event.weekly" >
+			Wöchentlich {{event.startDate | date:'EEEE'}}s
+		</div>
+		<button mat-icon-button class="header-delete-button" (click)="deleteEvent(event.id)" *ngIf="eventActive" [style.color]="event.color.text">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+	</div>
+	<div class="event-body">
+		<div *ngIf="event.description != ''; else noDescription">
+			{{event.description}}
+		</div>
+		<ng-template #noDescription>
+			Keine Beschreibung
+		</ng-template>
+	</div>
+	<div class="event-footer"></div>
+</div>
+<div class="event-overlay" (click)="eventActive ? eventActive=false : eventActive=true" [class.active]="eventActive"></div>
